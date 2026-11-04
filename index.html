@@ -63,8 +63,11 @@ nav ul a:hover::after{width:100%}
 .hero{
   min-height:100svh;
   position:relative;
-  display:flex;flex-direction:column;justify-content:center;
-  padding:120px clamp(20px,4vw,56px) 60px;
+  display:grid;
+  grid-template-columns:minmax(0,1.15fr) auto minmax(110px,.28fr);
+  align-items:center;
+  column-gap:clamp(24px,4vw,64px);
+  padding:120px clamp(20px,4vw,56px) 48px;
   overflow:hidden;
 }
 .hero-rail{
@@ -77,17 +80,46 @@ nav ul a:hover::after{width:100%}
 .hero-bgword{
   position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
   font-family:"Anton",sans-serif;
-  font-size:clamp(110px,23vw,380px);
+  font-size:clamp(80px,16.5vw,290px);
   color:var(--accent-deep);
   text-transform:uppercase;white-space:nowrap;
   pointer-events:none;user-select:none;
-  z-index:1;line-height:1;
+  z-index:0;line-height:1;letter-spacing:.02em;
 }
-.hero-photo{
-  position:absolute;right:clamp(16px,9vw,150px);top:50%;
-  transform:translateY(-50%);
-  width:min(330px,26vw);z-index:2;
+.hero-main{position:relative;z-index:2}
+.hello{
+  font-family:"Instrument Serif",serif;font-style:italic;
+  font-size:clamp(26px,3vw,42px);color:var(--paper);
 }
+.hero h1{
+  font-family:"Anton",sans-serif;
+  font-size:clamp(54px,9.5vw,150px);
+  line-height:.92;text-transform:uppercase;letter-spacing:-.01em;
+  margin:10px 0 0;color:var(--accent);
+}
+.hero h1 .row{display:block;overflow:hidden}
+.hero h1 .row span{display:inline-block}
+.js .hero h1 .row span{transform:translateY(110%)}
+.hero h1 .dot{color:var(--paper);font-size:.55em;line-height:0;vertical-align:baseline}
+.hero-role{
+  margin-top:20px;
+  font-family:"Anton",sans-serif;font-size:clamp(15px,1.6vw,21px);
+  letter-spacing:.16em;text-transform:uppercase;color:var(--paper);
+}
+.hero-desc{margin-top:12px;max-width:430px;color:var(--muted);font-size:clamp(14px,1.2vw,16px)}
+.hero-cta{margin-top:26px;display:flex;gap:14px;flex-wrap:wrap}
+.btn{
+  display:inline-flex;align-items:center;gap:10px;
+  font-weight:700;font-size:13px;letter-spacing:.06em;text-transform:uppercase;
+  padding:15px 28px;text-decoration:none;border:2px solid var(--paper);
+  transition:background .25s,color .25s,border-color .25s,transform .25s;
+}
+.btn-solid{background:var(--accent);border-color:var(--accent);color:var(--bg)}
+.btn-solid:hover{background:var(--paper);border-color:var(--paper);color:var(--bg);transform:translateY(-3px)}
+.btn-ghost{color:var(--paper)}
+.btn-ghost:hover{background:var(--paper);color:var(--bg);transform:translateY(-3px)}
+
+.hero-photo{position:relative;z-index:1;width:clamp(240px,23vw,330px)}
 .hero-photo .frame{
   aspect-ratio:3/4;background:var(--panel);
   overflow:hidden;position:relative;
@@ -107,56 +139,22 @@ nav ul a:hover::after{width:100%}
   font-family:"Anton",sans-serif;font-size:13px;letter-spacing:.1em;text-transform:uppercase;
   padding:8px 14px;
 }
-.hero-main{position:relative;z-index:3;max-width:720px}
-.hello{
-  font-family:"Instrument Serif",serif;font-style:italic;
-  font-size:clamp(26px,3.2vw,44px);color:var(--paper);
-}
-.hero h1{
-  font-family:"Anton",sans-serif;
-  font-size:clamp(58px,11.5vw,180px);
-  line-height:.92;text-transform:uppercase;letter-spacing:-.01em;
-  margin:10px 0 0;color:var(--accent);
-}
-.hero h1 .row{display:block;overflow:hidden}
-.hero h1 .row span{display:inline-block}
-.js .hero h1 .row span{transform:translateY(110%)}
-.hero h1 .dot{color:var(--paper)}
-.hero-role{
-  margin-top:20px;
-  font-family:"Anton",sans-serif;font-size:clamp(15px,1.7vw,22px);
-  letter-spacing:.16em;text-transform:uppercase;color:var(--paper);
-}
-.hero-desc{margin-top:12px;max-width:430px;color:var(--muted);font-size:clamp(14px,1.3vw,17px)}
-.hero-cta{margin-top:28px;display:flex;gap:14px;flex-wrap:wrap}
-.btn{
-  display:inline-flex;align-items:center;gap:10px;
-  font-weight:700;font-size:13px;letter-spacing:.06em;text-transform:uppercase;
-  padding:15px 28px;text-decoration:none;border:2px solid var(--paper);
-  transition:background .25s,color .25s,border-color .25s,transform .25s;
-}
-.btn-solid{background:var(--accent);border-color:var(--accent);color:var(--bg)}
-.btn-solid:hover{background:var(--paper);border-color:var(--paper);color:var(--bg);transform:translateY(-3px)}
-.btn-ghost{color:var(--paper)}
-.btn-ghost:hover{background:var(--paper);color:var(--bg);transform:translateY(-3px)}
-
 .hero-stats{
-  position:absolute;right:clamp(16px,3vw,44px);bottom:70px;
-  display:flex;flex-direction:column;gap:22px;text-align:right;z-index:3;
+  display:flex;flex-direction:column;gap:26px;align-items:flex-end;
+  text-align:right;position:relative;z-index:2;
 }
 .stat .n{
-  font-family:"Anton",sans-serif;font-size:clamp(30px,3.6vw,52px);
+  font-family:"Anton",sans-serif;font-size:clamp(30px,3.4vw,48px);
   color:var(--paper);line-height:1;
 }
 .stat .n i{font-style:normal;color:var(--accent)}
 .stat .l{font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-top:4px}
 @media(max-width:900px){
-  .hero{padding-top:110px;justify-content:flex-start}
+  .hero{grid-template-columns:1fr;row-gap:34px;padding-top:110px;justify-items:start}
   .hero-rail{display:none}
-  .hero-bgword{font-size:clamp(80px,22vw,180px);top:auto;bottom:34%;transform:translateX(-50%)}
-  .hero-photo{position:relative;right:auto;top:auto;transform:none;width:min(300px,70%);margin:36px 0 0}
-  .hero-stats{position:relative;right:auto;bottom:auto;flex-direction:row;gap:28px;text-align:left;margin-top:44px}
-  .hero-main{max-width:none}
+  .hero-bgword{font-size:clamp(64px,19vw,140px);top:16%;transform:translateX(-50%)}
+  .hero-photo{width:min(300px,72%)}
+  .hero-stats{flex-direction:row;gap:30px;align-items:flex-start;text-align:left}
 }
 
 /* ---------- MARQUEE ---------- */
