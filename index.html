@@ -16,6 +16,7 @@
   --paper:#F2EFE6;
   --muted:#A69E8F;
   --accent:#FF4D00;
+  --accent-deep:#7E2400;
   --line:rgba(242,239,230,.14);
 }
 *{margin:0;padding:0;box-sizing:border-box}
@@ -58,50 +59,76 @@ nav ul a:hover::after{width:100%}
   nav ul a{font-size:11px}
 }
 
-/* ---------- HERO (cinematic dark) ---------- */
+/* ---------- HERO (poster: kata raksasa + foto numpuk) ---------- */
 .hero{
   min-height:100svh;
   position:relative;
   display:flex;flex-direction:column;justify-content:center;
-  padding:130px clamp(20px,4vw,56px) 60px;
+  padding:120px clamp(20px,4vw,56px) 60px;
   overflow:hidden;
 }
+.hero-rail{
+  position:absolute;left:18px;top:50%;transform:translateY(-50%) rotate(180deg);
+  writing-mode:vertical-rl;
+  font-size:11px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--muted);white-space:nowrap;z-index:3;
+}
+.hero-rail b{color:var(--accent)}
 .hero-bgword{
   position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
   font-family:"Anton",sans-serif;
-  font-size:clamp(120px,26vw,420px);
-  color:transparent;
-  -webkit-text-stroke:1.5px rgba(242,239,230,.10);
+  font-size:clamp(110px,23vw,380px);
+  color:var(--accent-deep);
   text-transform:uppercase;white-space:nowrap;
   pointer-events:none;user-select:none;
-  z-index:0;
+  z-index:1;line-height:1;
 }
-.hero-grid{
-  position:relative;z-index:2;
-  display:grid;grid-template-columns:1.15fr .85fr;
-  gap:clamp(24px,4vw,60px);align-items:center;
+.hero-photo{
+  position:absolute;right:clamp(16px,9vw,150px);top:50%;
+  transform:translateY(-50%);
+  width:min(330px,26vw);z-index:2;
 }
+.hero-photo .frame{
+  aspect-ratio:3/4;background:var(--panel);
+  overflow:hidden;position:relative;
+}
+.js .hero-photo .frame{clip-path:inset(100% 0 0 0)}
+.hero-photo img{
+  width:100%;height:100%;object-fit:cover;object-position:top;
+  filter:grayscale(100%) contrast(1.08);display:block;
+}
+.hero-photo::after{
+  content:"";position:absolute;inset:0;
+  box-shadow:inset 0 0 0 2px var(--accent);pointer-events:none;
+}
+.hero-photo .tag{
+  position:absolute;left:0;bottom:-34px;
+  background:var(--accent);color:var(--bg);
+  font-family:"Anton",sans-serif;font-size:13px;letter-spacing:.1em;text-transform:uppercase;
+  padding:8px 14px;
+}
+.hero-main{position:relative;z-index:3;max-width:720px}
 .hello{
   font-family:"Instrument Serif",serif;font-style:italic;
-  font-size:clamp(24px,3vw,40px);color:var(--muted);
+  font-size:clamp(26px,3.2vw,44px);color:var(--paper);
 }
 .hero h1{
   font-family:"Anton",sans-serif;
-  font-size:clamp(56px,10vw,150px);
-  line-height:.94;text-transform:uppercase;letter-spacing:-.01em;
-  margin:6px 0 0;
+  font-size:clamp(58px,11.5vw,180px);
+  line-height:.92;text-transform:uppercase;letter-spacing:-.01em;
+  margin:10px 0 0;color:var(--accent);
 }
 .hero h1 .row{display:block;overflow:hidden}
 .hero h1 .row span{display:inline-block}
 .js .hero h1 .row span{transform:translateY(110%)}
-.hero h1 .dot{color:var(--accent)}
+.hero h1 .dot{color:var(--paper)}
 .hero-role{
-  margin-top:22px;
-  font-family:"Anton",sans-serif;font-size:clamp(16px,1.8vw,24px);
-  letter-spacing:.14em;text-transform:uppercase;color:var(--accent);
+  margin-top:20px;
+  font-family:"Anton",sans-serif;font-size:clamp(15px,1.7vw,22px);
+  letter-spacing:.16em;text-transform:uppercase;color:var(--paper);
 }
-.hero-desc{margin-top:14px;max-width:480px;color:var(--muted);font-size:clamp(14px,1.3vw,17px)}
-.hero-cta{margin-top:30px;display:flex;gap:14px;flex-wrap:wrap}
+.hero-desc{margin-top:12px;max-width:430px;color:var(--muted);font-size:clamp(14px,1.3vw,17px)}
+.hero-cta{margin-top:28px;display:flex;gap:14px;flex-wrap:wrap}
 .btn{
   display:inline-flex;align-items:center;gap:10px;
   font-weight:700;font-size:13px;letter-spacing:.06em;text-transform:uppercase;
@@ -113,34 +140,23 @@ nav ul a:hover::after{width:100%}
 .btn-ghost{color:var(--paper)}
 .btn-ghost:hover{background:var(--paper);color:var(--bg);transform:translateY(-3px)}
 
-.hero-right{display:flex;flex-direction:column;align-items:center;gap:28px}
-.hero-photo{position:relative;width:min(300px,70%)}
-.hero-photo .frame{
-  aspect-ratio:3/4;background:var(--panel);
-  overflow:hidden;
+.hero-stats{
+  position:absolute;right:clamp(16px,3vw,44px);bottom:70px;
+  display:flex;flex-direction:column;gap:22px;text-align:right;z-index:3;
 }
-.js .hero-photo .frame{clip-path:inset(100% 0 0 0)}
-.hero-photo img{
-  width:100%;height:100%;object-fit:cover;object-position:top;
-  filter:grayscale(100%) contrast(1.08);display:block;
-}
-.hero-photo::after{
-  content:"";position:absolute;inset:0;
-  box-shadow:inset 0 0 0 2px var(--accent);
-  transform:scale(1.04);pointer-events:none;
-}
-.hero-stats{display:flex;gap:clamp(20px,3vw,44px)}
-.stat{text-align:center}
 .stat .n{
-  font-family:"Anton",sans-serif;font-size:clamp(28px,3.4vw,44px);
+  font-family:"Anton",sans-serif;font-size:clamp(30px,3.6vw,52px);
   color:var(--paper);line-height:1;
 }
 .stat .n i{font-style:normal;color:var(--accent)}
-.stat .l{font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-top:6px}
+.stat .l{font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-top:4px}
 @media(max-width:900px){
-  .hero-grid{grid-template-columns:1fr}
-  .hero-right{align-items:flex-start}
-  .hero-bgword{font-size:clamp(90px,24vw,200px)}
+  .hero{padding-top:110px;justify-content:flex-start}
+  .hero-rail{display:none}
+  .hero-bgword{font-size:clamp(80px,22vw,180px);top:auto;bottom:34%;transform:translateX(-50%)}
+  .hero-photo{position:relative;right:auto;top:auto;transform:none;width:min(300px,70%);margin:36px 0 0}
+  .hero-stats{position:relative;right:auto;bottom:auto;flex-direction:row;gap:28px;text-align:left;margin-top:44px}
+  .hero-main{max-width:none}
 }
 
 /* ---------- MARQUEE ---------- */
@@ -292,31 +308,29 @@ footer{
 </nav>
 
 <header class="hero">
+  <div class="hero-rail" aria-hidden="true">Teknik Industri · Universitas <b>Tidar</b> · Magelang</div>
   <div class="hero-bgword" aria-hidden="true">PORTFOLIO</div>
-  <div class="hero-grid">
-    <div>
-      <p class="hello">Hello, I'm</p>
-      <h1>
-        <span class="row"><span>Hussen</span></span>
-        <span class="row"><span>Anwar<span class="dot">.</span></span></span>
-      </h1>
-      <p class="hero-role">Mahasiswa Teknik Industri</p>
-      <p class="hero-desc">Yang nggak cuma baca blueprint: bikin 3D-nya di SolidWorks, kejar presisinya di bengkel, dan rapihin tampilannya lewat desain grafis dan web.</p>
-      <div class="hero-cta">
-        <a class="btn btn-solid" href="#proyek">Lihat Proyek</a>
-        <a class="btn btn-ghost" href="#kontak">Hubungi Saya</a>
-      </div>
+  <div class="hero-main">
+    <p class="hello">Hello, I'm</p>
+    <h1>
+      <span class="row"><span>Hussen</span></span>
+      <span class="row"><span>Anwar<span class="dot">.</span></span></span>
+    </h1>
+    <p class="hero-role">Mahasiswa Teknik Industri</p>
+    <p class="hero-desc">Yang nggak cuma baca blueprint: bikin 3D-nya di SolidWorks, kejar presisinya di bengkel, dan rapihin tampilannya lewat desain grafis dan web.</p>
+    <div class="hero-cta">
+      <a class="btn btn-solid" href="#proyek">Lihat Proyek</a>
+      <a class="btn btn-ghost" href="#kontak">Hubungi Saya</a>
     </div>
-    <div class="hero-right">
-      <div class="hero-photo">
-        <div class="frame"><img src="assets/foto.png" alt="Foto Muhamad Hussen Anwar"></div>
-      </div>
-      <div class="hero-stats">
-        <div class="stat"><div class="n">0<i>8</i></div><div class="l">Proyek</div></div>
-        <div class="stat"><div class="n">0<i>3</i></div><div class="l">Asisten Praktikum</div></div>
-        <div class="stat"><div class="n">0<i>5</i></div><div class="l">Tahun Bengkel</div></div>
-      </div>
-    </div>
+  </div>
+  <div class="hero-photo">
+    <div class="frame"><img src="assets/foto.png" alt="Foto Muhamad Hussen Anwar"></div>
+    <div class="tag">Portofolio 2026</div>
+  </div>
+  <div class="hero-stats">
+    <div class="stat"><div class="n">0<i>8</i></div><div class="l">Proyek</div></div>
+    <div class="stat"><div class="n">0<i>3</i></div><div class="l">Asisten Praktikum</div></div>
+    <div class="stat"><div class="n">0<i>5</i></div><div class="l">Tahun Bengkel</div></div>
   </div>
 </header>
 
@@ -358,17 +372,17 @@ footer{
       <span class="exp-where">Universitas Tidar</span>
     </div>
     <div class="exp-row">
-      <span class="exp-when">2025 - 2026</span>
+      <span class="exp-when">Periode 2025 - 2026</span>
       <div class="exp-what"><h3>Kepala Biro Keskominfo</h3><p>Memimpin biro komunikasi dan informasi HMTI: publikasi, dokumentasi, dan pengelolaan media sosial kabinet.</p></div>
       <span class="exp-where">HMTI</span>
     </div>
     <div class="exp-row">
-      <span class="exp-when">2024 &amp; 2025</span>
+      <span class="exp-when">Agu - Des 2024 &amp; Agu - Des 2025</span>
       <div class="exp-what"><h3>Asisten Praktikum Gambar Teknik</h3><p>Membimbing praktikan SolidWorks: gambar teknik 2D, pemodelan 3D, part, assembly, dan drawing.</p></div>
       <span class="exp-where">Universitas Tidar</span>
     </div>
     <div class="exp-row">
-      <span class="exp-when">2023 - 2024</span>
+      <span class="exp-when">Periode 2023 - 2024</span>
       <div class="exp-what"><h3>Wakil Ketua Divisi Huminfo</h3><p>Membackup ketua divisi, mengelola akun dan konten media sosial HMTI, serta ikut membuat identitas visual kabinet.</p></div>
       <span class="exp-where">HMTI</span>
     </div>
