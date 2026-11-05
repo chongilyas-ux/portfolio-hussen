@@ -78,10 +78,10 @@ nav ul a:hover::after{width:100%}
 }
 .hero-rail b{color:var(--accent)}
 .hero-bgword{
-  position:absolute;top:50%;left:34%;
-  transform:translateY(-50%);
+  position:absolute;top:9%;left:50%;
+  transform:translateX(-50%);
   font-family:"Anton",sans-serif;
-  font-size:clamp(60px,10.5vw,190px);
+  font-size:clamp(90px,17vw,300px);
   color:#3A1404;
   text-transform:uppercase;white-space:nowrap;
   pointer-events:none;user-select:none;
@@ -149,7 +149,7 @@ nav ul a:hover::after{width:100%}
 @media(max-width:900px){
   .hero{grid-template-columns:1fr;row-gap:34px;padding-top:110px;justify-items:start}
   .hero-rail{display:none}
-  .hero-bgword{font-size:clamp(48px,11vw,110px);top:14%;left:auto;right:-2vw;transform:none}
+  .hero-bgword{font-size:clamp(56px,15vw,120px);top:8%;left:50%;right:auto;transform:translateX(-50%)}
   .hero-photo{width:min(300px,72%)}
   .hero-stats{flex-direction:row;gap:30px;align-items:flex-start;text-align:left}
 }
@@ -308,8 +308,7 @@ footer{
   <div class="hero-main">
     <p class="hello">Hello, I'm</p>
     <h1>
-      <span class="row"><span>Hussen</span></span>
-      <span class="row"><span>Anwar<span class="dot">.</span></span></span>
+      <span class="row"><span>Hussen<span class="dot">.</span></span></span>
     </h1>
     <p class="hero-role">Mahasiswa Teknik Industri</p>
     <p class="hero-desc">Yang nggak cuma baca blueprint: bikin 3D-nya di SolidWorks, kejar presisinya di bengkel, dan rapihin tampilannya lewat desain grafis dan web.</p>
